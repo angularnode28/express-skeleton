@@ -8,6 +8,51 @@ paths:
     get:
       tags:
         - roles
+      parameters:
+        - name: searchWith
+          in: query
+          type: string
+          required: false
+        - name: limit
+          in: query
+          type: string
+          required: false
+        - name: offset
+          in: query
+          type: string
+          required: false
+        - name: status
+          in: query
+          type: integer
+          required: false
+        - name: fromDate
+          in: query
+          type: string
+          required: false
+          description: "date format : YYYY-MM-DD"
+        - name: toDate
+          in: query
+          type: string
+          required: false
+          description: "date format : YYYY-MM-DD"
+        - name: sortBy
+          in: query
+          type: string
+          required: false
+          description: ASC | DESC
+        - name: sortByKey
+          in: query
+          type: string
+          required: false
+      responses:
+        "200":
+          description: Listed roles successfully
+        "400":
+          description: Bad request
+        "404":
+          description: path not found
+        "500":
+          description: Internal server error
   /createRole:
     post:
       tags:
@@ -19,9 +64,18 @@ paths:
           schema:
             type: object
             properties:
-              role:
+              role_name:
                 type: string
-  /updateRole:
+      responses:
+        "200":
+          description: Created role successfully
+        "400":
+          description: Bad request
+        "404":
+          description: path not found
+        "500":
+          description: Internal server error
+  /updateRole/{roleId}:
     put:
       tags:
         - roles
@@ -36,9 +90,18 @@ paths:
           schema:
             type: object
             properties:
-              role:
+              role_name:
                 type: string
-  /deleteRole:
+      responses:
+        "200":
+          description: Updated role successfully
+        "400":
+          description: Bad request
+        "404":
+          description: path not found
+        "500":
+          description: Internal server error
+  /deleteRole/{roleId}:
     post:
       tags:
         - roles
@@ -47,3 +110,16 @@ paths:
           type: string
           required: true
           in: path
+      responses:
+        "200":
+          description: Deleted role successfully
+        "400":
+          description: Bad request
+        "404":
+          description: path not found
+        "500":
+          description: Internal server error
+  /getUsers:
+    get:
+      tags:
+        - users
