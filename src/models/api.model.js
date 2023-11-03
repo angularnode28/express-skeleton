@@ -25,7 +25,7 @@ class Failure {
 
   constructor(status, keyword, message, error) {
     this.status = status;
-    this.keyword = keyword;
+    this.keyword = 'FAILURE';
     // this.error = error;
     this.message = message;
 

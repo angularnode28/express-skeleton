@@ -8,6 +8,7 @@ const swagger = require("swagger-ui-express");
 const swaggerDocument = YAML.load("./swagger.yaml");
 const connection = require("./src/services/database");
 const RoleRouter = require("./src/routes/role.routes");
+const MasterRoutes = require("./src/routes/master.routes");
 require("./src/configs/swagger-docs");
 
 // Global Functionalities
@@ -19,6 +20,7 @@ app.use(
   })
 );
 app.use("/", RoleRouter);
+app.use("/", MasterRoutes);
 
 app.use("/api-docs", swagger.serve, swagger.setup(swaggerDocument));
 
