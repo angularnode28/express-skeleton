@@ -19,18 +19,18 @@ class CreateQueryGenerator {
     this.keys.filter((ele, inx) => {
       switch (true) {
         case inx == 0:
-          query += `'${ele}'`;
+          query += `${ele}`;
           break;
         case inx + 1 != this.keys.length:
-          query += `, '${ele}'`;
+          query += `, ${ele}`;
           break;
         case inx + 1 == this.keys.length:
-          query += `, '${ele}'`;
+          query += `, ${ele}`;
           break;
       }
     });
 
-    return query;
+    return query
   }
 
   queryValues() {
@@ -42,15 +42,15 @@ class CreateQueryGenerator {
           query += `'${this.values[ele]}'`;
           break;
         case inx + 1 != this.keys.length:
-          query += `,'${this.values[ele]}'`;
+          query += `, '${this.values[ele]}'`;
           break;
         case inx + 1 == this.keys.length:
-          query += `,'${this.values[ele]}'`;
+          query += `, '${this.values[ele]}'`;
           break;
       }
     });
 
-    return query;
+    return query
   }
 
   getQuery() {

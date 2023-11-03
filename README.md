@@ -13,3 +13,14 @@ generator.dateFilterFn(params);
 //       : "WHERE " + generator.dateFilterFn(params)
 //   } ${generator.paginationFn(params)}`
 // );
+
+
+<!-- Role Exists Resolver -->
+
+  roleExists.then((response) => {
+    if (response.status) {
+    
+    } else {
+      res.status(500).json(response.response);
+    }
+  })

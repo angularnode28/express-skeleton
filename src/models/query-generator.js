@@ -24,7 +24,7 @@ class QueryGenerator {
       switch (true) {
         // case 1
         case inx == 0 && checkNull(params[ele]):
-          query += ` WHERE ${ele}=${params[ele]}`;
+          query += ` ${ele}=${params[ele]}`;
           break;
 
         // case 2
@@ -131,10 +131,21 @@ class QueryGenerator {
     const searchFilter = this.searchFn(this.params, this.tableKeys);
     const pagination = this.paginationFn(this.params);
 
-    let query = `SELECT * FROM ${this.name} `;
+    let query = `SELECT * FROM ${this.name} WHERE status!=2`;
+
+   
 
     if (checkNull(fieldFilter)) {
-      query += `${fieldFilter} `;
+      switch (true) {
+        case query.includes("WHERE"):
+          query += ` AND ${fieldFilter} `;
+          break;
+        case !query.includes("WHERE") && checkNull(fieldFilter):
+          query += `WHERE ${fieldFilter} `;
+          break;
+        default:
+          break;
+      }
     }
 
     if (checkNull(searchFilter)) {
